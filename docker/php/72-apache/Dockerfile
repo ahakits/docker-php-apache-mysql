@@ -14,6 +14,9 @@ RUN apt-get install -y ssl-cert
 RUN a2enmod ssl
 RUN a2ensite default-ssl
 
+# Enable mod_rewrite
+RUN a2enmod rewrite
+
 # Install PDO
 RUN docker-php-ext-install pdo_mysql
 
