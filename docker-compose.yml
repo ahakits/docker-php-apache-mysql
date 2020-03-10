@@ -1,21 +1,21 @@
 version: '3'
 services:
   app:
-    build: ./php/72-apache
+    build: ./php
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - db
     volumes:
-      - ../application:/var/www/html
-      - ../logs/apache2:/var/log/apache2
+      - ./php/application:/var/www/html
+      - ./logs/apache2:/var/log/apache2
     container_name: app
 
   cli:
-    build: ./php/72-apache
+    build: ./php
     volumes:
-      - ../application:/var/www/html
+      - ./php/application:/var/www/html
     environment:
       - PHP_IDE_CONFIG=serverName=docker
     container_name: cli
@@ -23,7 +23,7 @@ services:
   composer:
     image: composer:latest
     volumes:
-      - ../application:/application
+      - ./php/application:/application
     working_dir: /application
     container_name: composer
 
@@ -33,8 +33,8 @@ services:
       - "13306:3306"
     env_file: .env.develop
     volumes:
-      - ../data/mysql:/var/lib/mysql
-      - ../logs/mysql:/var/log/mysql
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
     container_name: db
 
   memcached:
@@ -46,5 +46,6 @@ services:
     ports:
       - "16379:6379"
     volumes:
-      - ../data/redis:/data
+      - ./data/redis:/data
     container_name: cache-redis
+

@@ -8,10 +8,9 @@ Local Development Environment for PHP using Docker for Mac.
 
 ## Usage
 
-1. `cd ./docker`
-2. `docker-compose up -d`
-3. deploy your application to `./application`
-4. edit `application/compose.json`
+1. `docker-compose up -d --build`
+3. deploy your application to `./php/application`
+4. edit `./php/application/compose.json`
 5. `docker-compose run composer install`
 
 
